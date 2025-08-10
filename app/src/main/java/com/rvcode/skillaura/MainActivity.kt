@@ -30,34 +30,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            val viewModel: AuthViewModel = hiltViewModel()
-            val myData = viewModel.data.observeAsState().value
             SkillAuraTheme {
-                Box (
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.TopCenter
-                ){
-                    Column (
-                        modifier = Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ){
-
-                        myData?.let {
-                            Text("Fetched data is : $it")
-                        }
-                    }
-//                    Greeting("Hi Ramveer, Android app developer\n Noida Up", modifier = Modifier.padding(10.dp))
-                }
+               AppNavigation()
             }
         }
     }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
 }
 
