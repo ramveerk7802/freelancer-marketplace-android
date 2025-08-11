@@ -1,13 +1,16 @@
 package com.rvcode.skillaura.di
 
-import com.rvcode.skillaura.apiservices.AuthService
+import com.rvcode.skillaura.apiservices.AuthApi
+import com.rvcode.skillaura.util.AuthInterceptor
 import com.rvcode.skillaura.util.Constant
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.StringBuilder
 import javax.inject.Singleton
 
 
@@ -17,16 +20,24 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(): Retrofit{
+    fun provideRetrofitBuilder(): Retrofit.Builder{
         return Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient{
+        return OkHttpClient.Builder()
+            .addInterceptor(authInterceptor)
             .build()
     }
 
     @Singleton
     @Provides
-    fun providesAuthServiceApi(retrofit: Retrofit): AuthService{
-        return retrofit.create(AuthService::class.java)
+    fun providesAuthApi(retrofitBuilder: Retrofit.Builder): AuthApi{
+        return retrofitBuilder.build().create(AuthApi::class.java)
     }
 }

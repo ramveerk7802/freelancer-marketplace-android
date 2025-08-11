@@ -78,6 +78,8 @@ dependencies {
     // retrofit2
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+    implementation("com.squareup.okhttp3:okhttp:5.0.0")
 
     implementation(libs.kotlinx.serialization.json)
 
@@ -92,6 +94,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     // Lifecycle utilities for Compose
     implementation(libs.androidx.lifecycle.runtime.compose)
+
+
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
 
 
 

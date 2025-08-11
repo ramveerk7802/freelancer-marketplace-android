@@ -14,4 +14,7 @@ sealed class Destination {
     @Serializable
     data object Registration : Destination()
 
+    @Serializable
+    data object Splash:Destination()
+
 }

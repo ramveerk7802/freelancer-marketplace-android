@@ -1,16 +1,16 @@
 package com.rvcode.skillaura.repository
 
 import android.util.Log
-import com.rvcode.skillaura.apiservices.AuthService
+import com.rvcode.skillaura.apiservices.AuthApi
 import kotlinx.coroutines.delay
 import javax.inject.Inject
 
-class AuthRepository @Inject constructor(private val authService: AuthService) {
+class AuthRepository @Inject constructor(private val authApi: AuthApi) {
 
     suspend fun getTestData(): String?{
         try {
             delay(2000)
-            val response = authService.getData()
+            val response = authApi.getData()
             if(response.isSuccessful && response.body()!=null){
                 val body =  response.body()
                 return body?.message
