@@ -95,6 +95,7 @@ dependencies {
     // Lifecycle utilities for Compose
     implementation(libs.androidx.lifecycle.runtime.compose)
 
+    implementation("com.airbnb.android:lottie-compose:6.4.0")
 
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
 

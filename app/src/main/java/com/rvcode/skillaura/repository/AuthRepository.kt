@@ -2,27 +2,37 @@ package com.rvcode.skillaura.repository
 
 import android.util.Log
 import com.rvcode.skillaura.apiservices.AuthApi
+import com.rvcode.skillaura.models.requests.LoginRequest
+import com.rvcode.skillaura.models.requests.RegisterRequest
+import com.rvcode.skillaura.models.response.AuthResponse
 import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(private val authApi: AuthApi) {
 
-    suspend fun getTestData(): String?{
-        try {
-            delay(2000)
-            val response = authApi.getData()
-            if(response.isSuccessful && response.body()!=null){
-                val body =  response.body()
-                return body?.message
-            }else{
-                return "Response not get"
-            }
+    suspend fun registerUser(request: RegisterRequest): Boolean{
+        return try {
+            val response = authApi.registerUser(request)
+            response.isSuccessful
 
-        }catch (e:Exception){
-            Log.d("AUTH_SERVICE","Failed to fetch data from retrofit ${e.message}")
-            throw e;
+        }catch (e: Exception){
+            Log.d("Auth","Failed to registration : ${e.message}")
+            false
         }
-        return "Without retrofit"
+    }
 
+    suspend fun loginUser(request: LoginRequest): AuthResponse?{
+        return try {
+            val response = authApi.loginUser(request)
+            if(response.isSuccessful ){
+                response.body()
+            }else{
+                Log.e("Auth", "Login failed: ${response.code()} - ${response.message()}")
+                null
+            }
+        }catch (e: Exception){
+            Log.d("Auth","Login failed : ${e.message}")
+            null
+        }
     }
 }

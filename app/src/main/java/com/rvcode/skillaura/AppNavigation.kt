@@ -10,63 +10,84 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.rvcode.skillaura.screens.HomeScreen
+import com.rvcode.skillaura.screens.SplashScreen
 import com.rvcode.skillaura.screens.auth.screens.LoginScreen
 import com.rvcode.skillaura.screens.auth.screens.RegistrationScreen
 import com.rvcode.skillaura.util.Destination
 import com.rvcode.skillaura.util.TokenManager
 import com.rvcode.skillaura.viewmodels.AuthViewModel
+import kotlin.math.sin
 
 @Composable
-fun AppNavigation(viewModel: AuthViewModel = hiltViewModel() ){
+fun AppNavigation(){
     val navController = rememberNavController()
-    val isLoggedIn = viewModel.isLoggedIn.observeAsState().value
-    val startDestination = remember { mutableStateOf<Any>(Destination.Splash) }
-    isLoggedIn?.let {
-        LaunchedEffect(key1 = Unit){
-            if(it){
-                startDestination.value= Destination.Home
-            }else{
-                startDestination.value=Destination.Login
+
+
+    NavHost(
+        navController = navController,
+        startDestination = Destination.Splash
+    ){
+        composable<Destination.Splash> {
+            SplashScreen{loggedIn->
+                if(loggedIn){
+                    navController.navigate(Destination.Home){
+                        popUpTo<Destination.Splash> {
+                            inclusive=true
+                        }
+                        launchSingleTop=true
+                    }
+                }else{
+                    navController.navigate(Destination.Login){
+                        popUpTo<Destination.Splash> {
+                            inclusive=true
+                        }
+                        launchSingleTop=true
+                    }
+                }
+
             }
         }
-    }
-
-
-    if(startDestination.value!=Destination.Splash){
-        NavHost(
-            navController = navController,
-            startDestination = startDestination.value
-        ){
-            composable<Destination.Home> {
-                HomeScreen(
-                    onNavigate = {
-                        navController.navigate(Destination.Login){
-                            popUpTo<Destination.Home> {
-                                inclusive= true
-                            }
+        composable<Destination.Home> {
+            HomeScreen(
+                onNavigate = {
+                    navController.navigate(Destination.Login){
+                        popUpTo<Destination.Home> {
+                            inclusive= true
                         }
                     }
-                )
+                }
+            )
 
-            }
-            composable<Destination.Login> {
-                LoginScreen(
-                    onclickNewAccount = {
-                        navController.navigate(Destination.Registration){
-                            popUpTo <Destination.Login>{
-                                inclusive= true
-                            }
+        }
+        composable<Destination.Login> {
+            LoginScreen(
+                onclickNewAccount = {
+                    navController.navigate(Destination.Registration){
+                        popUpTo <Destination.Login>{
+                            inclusive= true
                         }
-                    },
-                    onSuccessLogin = {}
-                )
-            }
-
-            composable<Destination.Registration> {
-                RegistrationScreen()
-            }
+                    }
+                },
+                onSuccessLogin = {
+                    navController.navigate(Destination.Home){
+                        popUpTo<Destination.Login> {
+                            inclusive=true
+                        }
+                        launchSingleTop=true
+                    }
+                }
+            )
         }
 
+        composable<Destination.Registration> {
+            RegistrationScreen{
+                navController.navigate(Destination.Login){
+                    popUpTo<Destination.Registration> {
+                        inclusive=true
+                    }
+                }
+            }
+        }
     }
 
 }

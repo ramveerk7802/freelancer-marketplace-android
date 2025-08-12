@@ -19,13 +19,7 @@ fun HomeScreen(onNavigate:()->Unit){
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ){
-        Button(
-            onClick = {
-                onNavigate()
-            }
-        ){
-            Text("Click to go login screen")
-        }
+        Text(text = "Home Screen")
     }
 
 }
