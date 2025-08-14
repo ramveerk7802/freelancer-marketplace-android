@@ -4,12 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rvcode.skillaura.models.requests.LoginRequest
-import com.rvcode.skillaura.models.requests.RegisterRequest
+import com.rvcode.skillaura.models.auth.LoginRequest
+import com.rvcode.skillaura.models.auth.RegisterRequest
 import com.rvcode.skillaura.repository.AuthRepository
 import com.rvcode.skillaura.util.TokenManager
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -57,7 +56,7 @@ class AuthViewModel @Inject constructor(private val tokenManager: TokenManager,p
             try {
                 val result = repository.loginUser(request)
                 if(result!=null){
-                    tokenManager.saveToken(token = result.token)
+                    tokenManager.saveToken(token = result.token, role = result.role)
                     _isLoading.postValue(false)
                     withContext(Dispatchers.Main){
                         onSuccess()

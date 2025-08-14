@@ -1,12 +1,10 @@
 package com.rvcode.skillaura.apiservices
 
-import com.rvcode.skillaura.models.requests.RegisterRequest
-import com.rvcode.skillaura.models.TestResponse
-import com.rvcode.skillaura.models.requests.LoginRequest
-import com.rvcode.skillaura.models.response.AuthResponse
+import com.rvcode.skillaura.models.auth.RegisterRequest
+import com.rvcode.skillaura.models.auth.LoginRequest
+import com.rvcode.skillaura.models.auth.response.AuthResponse
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AuthApi {

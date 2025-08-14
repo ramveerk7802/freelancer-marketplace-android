@@ -17,4 +17,13 @@ sealed class Destination {
     @Serializable
     data object Splash:Destination()
 
+    @Serializable
+    data object Main : Destination()
+
+    @Serializable
+    data object Client : Destination()
+
+    @Serializable
+    data object Freelancer : Destination()
+
 }

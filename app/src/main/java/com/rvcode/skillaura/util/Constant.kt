@@ -1,6 +1,6 @@
 package com.rvcode.skillaura.util
 
-import com.rvcode.skillaura.models.requests.Role
+import com.rvcode.skillaura.models.Role
 
 object Constant {
     const val BASE_URL= "http://10.201.237.13:8080/"

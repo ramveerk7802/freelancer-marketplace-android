@@ -13,6 +13,8 @@ import com.rvcode.skillaura.screens.HomeScreen
 import com.rvcode.skillaura.screens.SplashScreen
 import com.rvcode.skillaura.screens.auth.screens.LoginScreen
 import com.rvcode.skillaura.screens.auth.screens.RegistrationScreen
+import com.rvcode.skillaura.screens.client.screens.ClientHomeScreen
+import com.rvcode.skillaura.screens.freelancer.screens.FreelancerHomeScreen
 import com.rvcode.skillaura.util.Destination
 import com.rvcode.skillaura.util.TokenManager
 import com.rvcode.skillaura.viewmodels.AuthViewModel
@@ -30,7 +32,7 @@ fun AppNavigation(){
         composable<Destination.Splash> {
             SplashScreen{loggedIn->
                 if(loggedIn){
-                    navController.navigate(Destination.Home){
+                    navController.navigate(Destination.Main){
                         popUpTo<Destination.Splash> {
                             inclusive=true
                         }
@@ -69,7 +71,7 @@ fun AppNavigation(){
                     }
                 },
                 onSuccessLogin = {
-                    navController.navigate(Destination.Home){
+                    navController.navigate(Destination.Main){
                         popUpTo<Destination.Login> {
                             inclusive=true
                         }
@@ -87,6 +89,35 @@ fun AppNavigation(){
                     }
                 }
             }
+        }
+
+        composable<Destination.Main>{
+            MainScreen(
+                onNavigateClient = {
+                    navController.navigate(Destination.Client){
+                        popUpTo<Destination.Main> {
+                            inclusive =true
+                        }
+                        launchSingleTop=true
+                    }
+                },
+                onNavigateFreelancer = {
+                    navController.navigate(Destination.Freelancer){
+                        popUpTo<Destination.Main> {
+                            inclusive =true
+                        }
+                        launchSingleTop=true
+                    }
+
+                }
+            )
+        }
+
+        composable<Destination.Client> {
+            ClientHomeScreen()
+        }
+        composable<Destination.Freelancer> {
+            FreelancerHomeScreen()
         }
     }
 

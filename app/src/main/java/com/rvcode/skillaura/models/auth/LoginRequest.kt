@@ -1,4 +1,4 @@
-package com.rvcode.skillaura.models.requests
+package com.rvcode.skillaura.models.auth
 
 data class LoginRequest(
     val email:String,

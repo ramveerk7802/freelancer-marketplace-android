@@ -30,7 +30,7 @@ import com.rvcode.skillaura.compose.utility.LoadingDotsAnimation
 import com.rvcode.skillaura.compose.utility.MyFilledButton
 import com.rvcode.skillaura.compose.utility.PasswordText
 import com.rvcode.skillaura.compose.utility.SelectOption
-import com.rvcode.skillaura.models.requests.RegisterRequest
+import com.rvcode.skillaura.models.auth.RegisterRequest
 import com.rvcode.skillaura.util.Constant
 import com.rvcode.skillaura.viewmodels.AuthViewModel
 

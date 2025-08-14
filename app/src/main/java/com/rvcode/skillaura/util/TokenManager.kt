@@ -24,13 +24,19 @@ class TokenManager @Inject constructor(@ApplicationContext private val context: 
 
 
 
-    fun saveToken(token:String) = sharedPreferences.edit {
+    fun saveToken(token:String,role: String) = sharedPreferences.edit {
         this.putString("auth_token",token)
+        this.putString("role",role)
     }
+
+    fun getRole(): String? = sharedPreferences.getString("role",null)
 
     fun getToken():String? = sharedPreferences.getString("auth_token",null)
 
-    fun clearToken()=sharedPreferences.edit().remove("auth_Token").apply()
+    fun clearToken(){
+        sharedPreferences.edit().remove("auth_Token").remove("role").apply()
+
+    }
 
     fun isLoggedIn():Boolean = !getToken().isNullOrEmpty()
 }

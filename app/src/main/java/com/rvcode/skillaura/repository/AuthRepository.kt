@@ -2,10 +2,9 @@ package com.rvcode.skillaura.repository
 
 import android.util.Log
 import com.rvcode.skillaura.apiservices.AuthApi
-import com.rvcode.skillaura.models.requests.LoginRequest
-import com.rvcode.skillaura.models.requests.RegisterRequest
-import com.rvcode.skillaura.models.response.AuthResponse
-import kotlinx.coroutines.delay
+import com.rvcode.skillaura.models.auth.LoginRequest
+import com.rvcode.skillaura.models.auth.RegisterRequest
+import com.rvcode.skillaura.models.auth.response.AuthResponse
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(private val authApi: AuthApi) {

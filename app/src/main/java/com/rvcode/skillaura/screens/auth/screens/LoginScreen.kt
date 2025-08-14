@@ -2,7 +2,6 @@ package com.rvcode.skillaura.screens.auth.screens
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,8 +12,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
-import androidx.compose.material.icons.outlined.Person
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -28,13 +25,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.rvcode.skillaura.R
 import com.rvcode.skillaura.compose.utility.InputText
 import com.rvcode.skillaura.compose.utility.LoadingDotsAnimation
 import com.rvcode.skillaura.compose.utility.MyFilledButton
 import com.rvcode.skillaura.compose.utility.PasswordText
-import com.rvcode.skillaura.models.requests.LoginRequest
-import com.rvcode.skillaura.models.requests.RegisterRequest
+import com.rvcode.skillaura.models.auth.LoginRequest
 import com.rvcode.skillaura.viewmodels.AuthViewModel
 
 @Composable
