@@ -209,10 +209,10 @@ fun LoadingDotsAnimation(){
 @Composable
 fun ProjectView(leftButtonText:String, rightButtonText: String, onLeftClick:()-> Unit, onRightClick:()-> Unit){
     Surface(
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(16.dp),
         border = BorderStroke(
             width = 1.dp,
-            color = Color.Green,
+            color = Color.DarkGray,
         ),
         modifier = Modifier.fillMaxWidth()
     ) {
