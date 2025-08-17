@@ -43,6 +43,7 @@ class NetworkModule {
     }
 
 
+
     @Singleton
     @Provides
     fun providesUserApi(retrofitBuilder: Retrofit.Builder, client: OkHttpClient): UserApi{
