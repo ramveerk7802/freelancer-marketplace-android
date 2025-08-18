@@ -1,6 +1,7 @@
 package com.rvcode.skillaura.di
 
 import com.rvcode.skillaura.apiservices.AuthApi
+import com.rvcode.skillaura.apiservices.ProjectApi
 import com.rvcode.skillaura.apiservices.UserApi
 import com.rvcode.skillaura.util.AuthInterceptor
 import com.rvcode.skillaura.util.Constant
@@ -40,6 +41,13 @@ class NetworkModule {
     @Provides
     fun providesAuthApi(retrofitBuilder: Retrofit.Builder): AuthApi{
         return retrofitBuilder.build().create(AuthApi::class.java)
+    }
+
+
+    @Singleton
+    @Provides
+    fun providesProjectApi(retrofitBuilder: Retrofit.Builder,client: OkHttpClient): ProjectApi{
+        return retrofitBuilder.client(client).build().create(ProjectApi::class.java)
     }
 
 
