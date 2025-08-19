@@ -53,6 +53,7 @@ import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.rvcode.skillaura.R
 import com.rvcode.skillaura.models.Role
+import com.rvcode.skillaura.models.project.ProjectResponse
 import com.rvcode.skillaura.ui.theme.LIGHT_BLUE
 import com.rvcode.skillaura.ui.theme.LIGHT_BLUE_TEXT_COLOR
 
@@ -177,6 +178,7 @@ fun SelectOption(state: MutableState<String>,label: String,dropDownList: List<Ro
                  text = {Text(text = option.name)},
                     onClick = {
                         selectedOption=index
+                        state.value = dropDownList[selectedOption].name
                         showList=false
                     }
                 )
@@ -207,7 +209,7 @@ fun LoadingDotsAnimation(){
 
 
 @Composable
-fun ProjectView(leftButtonText:String, rightButtonText: String, onLeftClick:()-> Unit, onRightClick:()-> Unit){
+fun ProjectView(leftButtonText:String, rightButtonText: String, project: ProjectResponse, onLeftClick:()-> Unit, onRightClick:()-> Unit){
     Surface(
         shape = RoundedCornerShape(16.dp),
         border = BorderStroke(
@@ -228,7 +230,7 @@ fun ProjectView(leftButtonText:String, rightButtonText: String, onLeftClick:()->
             {
 
                 Text(
-                    text = "Open",
+                    text = project.status?.name?:"",
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold,
                     color = LIGHT_BLUE_TEXT_COLOR,
@@ -248,7 +250,7 @@ fun ProjectView(leftButtonText:String, rightButtonText: String, onLeftClick:()->
 
                     )
                     Text(
-                        text ="Project title",
+                        text =project.title?:"",
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.Bold,
 
@@ -286,7 +288,7 @@ fun ProjectView(leftButtonText:String, rightButtonText: String, onLeftClick:()->
 
                     )
                     Text(
-                        text ="2000 $",
+                        text =project.budget?.toString()?:"",
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.Bold,
 
@@ -300,7 +302,7 @@ fun ProjectView(leftButtonText:String, rightButtonText: String, onLeftClick:()->
             //description text
             Spacer(modifier = Modifier.fillMaxWidth().height(5.dp))
             Text(
-                text = "Description here",
+                text = project.description?:"",
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Left,
                 fontWeight = FontWeight.W300,

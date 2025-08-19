@@ -14,18 +14,19 @@ import com.rvcode.skillaura.compose.utility.ProjectView
 
 @Composable
 fun ClientHomeScreen(){
-    LazyColumn (
-        modifier = Modifier.fillMaxSize().padding(15.dp),
-        verticalArrangement = Arrangement.spacedBy(5.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        items(20){
-            ProjectView(
-                leftButtonText = "Edit",
-                rightButtonText = "Delete",
-                onLeftClick = {},
-                onRightClick = {}
-            )
-        }
-    }
+//    LazyColumn (
+//        modifier = Modifier.fillMaxSize().padding(15.dp),
+//        verticalArrangement = Arrangement.spacedBy(5.dp),
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ){
+//        items(20){
+//            ProjectView(
+//                leftButtonText = "Edit",
+//                rightButtonText = "Delete",
+//                project = ,
+//                onLeftClick = {},
+//                onRightClick = {}
+//            )
+//        }
+//    }
 }

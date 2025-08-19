@@ -12,5 +12,5 @@ data class ProjectResponse (
      val status: ProjectStatus? = null,
      val clientId: Long? = null,
      val clientName: String? = null,
-     val createdAt: LocalDateTime? = null
+     val createdAt: String? = null
 )
