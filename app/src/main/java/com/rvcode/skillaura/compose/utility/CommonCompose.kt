@@ -36,6 +36,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
@@ -56,6 +59,9 @@ import com.rvcode.skillaura.models.Role
 import com.rvcode.skillaura.models.project.ProjectResponse
 import com.rvcode.skillaura.ui.theme.LIGHT_BLUE
 import com.rvcode.skillaura.ui.theme.LIGHT_BLUE_TEXT_COLOR
+import com.rvcode.skillaura.ui.theme.bg_color1
+import com.rvcode.skillaura.ui.theme.bg_color2
+import com.rvcode.skillaura.ui.theme.bg_color3
 
 @Composable
 fun InputText(state:MutableState<String>,label:String,placeHolder:String,leadingIcon:ImageVector){
@@ -217,6 +223,8 @@ fun ProjectView(leftButtonText:String, rightButtonText: String, project: Project
             color = Color.DarkGray,
         ),
         modifier = Modifier.fillMaxWidth()
+
+
     ) {
         Column (
             modifier = Modifier.fillMaxWidth().padding(12.dp),
@@ -371,3 +379,25 @@ fun ProjectView(leftButtonText:String, rightButtonText: String, project: Project
         }
     }
 }
+
+
+fun Modifier.gradientBackground(): Modifier = this.then(
+    Modifier.drawWithCache {
+        onDrawBehind {
+            drawRect(
+                brush = Brush.radialGradient(
+                    colors = listOf(
+                        Color(0xFF0682A5),
+                        Color(0xFF223056),
+                        Color(0xFF0F172A)
+                    ),
+                    center = Offset(
+                        size.width * -0.247f,
+                        size.height * -0.473f
+                    ),
+                    radius = size.maxDimension * 1.2f
+                )
+            )
+        }
+    }
+)

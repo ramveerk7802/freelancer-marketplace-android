@@ -14,6 +14,7 @@ import com.rvcode.skillaura.screens.SplashScreen
 import com.rvcode.skillaura.screens.auth.screens.LoginScreen
 import com.rvcode.skillaura.screens.auth.screens.RegistrationScreen
 import com.rvcode.skillaura.screens.client.screens.ClientHomeScreen
+import com.rvcode.skillaura.screens.freelancer.screens.FreelancerApp
 import com.rvcode.skillaura.screens.freelancer.screens.FreelancerHomeScreen
 import com.rvcode.skillaura.util.Destination
 import com.rvcode.skillaura.util.TokenManager
@@ -117,7 +118,7 @@ fun AppNavigation(){
             ClientHomeScreen()
         }
         composable<Destination.Freelancer> {
-            FreelancerHomeScreen()
+            FreelancerApp()
         }
     }
 
