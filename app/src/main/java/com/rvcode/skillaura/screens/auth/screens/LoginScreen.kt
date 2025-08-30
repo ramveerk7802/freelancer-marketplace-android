@@ -58,7 +58,7 @@ fun LoginScreen(onclickNewAccount:()->Unit,onSuccessLogin:()-> Unit){
         )
         Spacer(Modifier.height(20.dp))
 
-        InputText(state = emailState, label = "Email", placeHolder = "example@gamil.com", leadingIcon = Icons.Outlined.Email)
+        InputText(state = emailState, singleLine = true,label = "Email", placeHolder = "example@gamil.com", leadingIcon = Icons.Outlined.Email)
         Spacer(Modifier.height(16.dp))
         PasswordText(state = passwordState, label = "Password", placeHolder = "Enter the password", leadingIcon = Icons.Outlined.Lock)
         Spacer(modifier = Modifier.height(20.dp))
