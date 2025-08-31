@@ -10,4 +10,7 @@ interface UserApi {
 
     @GET("api/users/role")
     suspend fun getRole(): Response<RoleResponse>
+
+    @GET("api/users")
+    suspend fun getUser(): Response<T>
 }
